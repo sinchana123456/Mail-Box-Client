@@ -1,11 +1,22 @@
 import { Fragment } from 'react';
-// import Login from './components/authentication/Login';
-import SignUp from './components/authentication/SignUp';
+import { useSelector } from 'react-redux';
+import { Route, Switch } from 'react-router-dom';
+import Authentication from './components/authentication/Authentication';
 
 function App() {
+  const isLogin = useSelector(state => state.authentication.isLogin);
+  
   return (
     <Fragment>
-      <SignUp />
+      <main>
+        <Switch>
+        {!isLogin &&
+          <Route path='/'>
+            <Authentication />
+          </Route>
+        }
+        </Switch>
+      </main>
     </Fragment>
   );
 }

@@ -27,7 +27,6 @@ const SignUp = (props) => {
                 <form onSubmit={signUpHandler}>
                     <input 
                         name='email'
-                        id='email'
                         type='email'
                         placeholder='Email ID'
                         required
@@ -35,7 +34,6 @@ const SignUp = (props) => {
                     />
                     <input 
                         name='password'
-                        id='password'
                         type='password'
                         placeholder='Password'
                         required

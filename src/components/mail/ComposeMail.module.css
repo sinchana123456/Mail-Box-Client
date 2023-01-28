@@ -1,5 +1,5 @@
 .compose {
-    margin: 5rem 7rem;
+    margin: 2rem 7rem;
     text-align: center;
 }
 
@@ -28,7 +28,7 @@
   }
   
 .compose button {
-    width: 7%;
+    width: 50%;
     padding: 8px;
     margin: 3rem 0 3rem 0;
     border: none;

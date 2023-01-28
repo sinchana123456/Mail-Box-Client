@@ -41,10 +41,8 @@ const Authentication = (props) => {
             })
             .then((data) => {
                 console.log('successfully created account');
-                console.log(data);
             })
             .catch((error) => {
-                console.log(error);
                 alert(error);
             });
     }
@@ -52,7 +50,7 @@ const Authentication = (props) => {
     const loginHandler = (email, password) => {
         fetch(
             'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBPHpH0tZsk8mjeJOBGbWRO_p8wxiWN9VY',
-            {
+                {
                     method: 'POST',
                     body: JSON.stringify({
                         email: email,
@@ -81,11 +79,9 @@ const Authentication = (props) => {
                 }
                 dispatch(authActions.login(loginObj))
                 console.log('successfully logged into the account');
-                console.log(data);
                 history.replace('/home');
             })
             .catch((error) => {
-                console.log(error.message);
                 alert(error.message);
             });
 

@@ -34,6 +34,10 @@ function App() {
               {isLogin && <Inbox />}
               {!isLogin && <Redirect to='/auth' />}
             </Route>
+            <Route path='/single-mail-details'>
+              {isLogin && <Inbox />}
+              {!isLogin && <Redirect to='/auth' />}
+            </Route>
           </Switch>
         </main>
     </Fragment>

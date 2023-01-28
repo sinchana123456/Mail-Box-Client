@@ -1,11 +1,11 @@
 import axios from 'axios';
 import { Editor } from "react-draft-wysiwyg";
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { useRef } from 'react';
 import Button from '../UI/Button';
 import classes from './ComposeMail.module.css';
 import { useDispatch } from 'react-redux';
 import { composeActions } from '../../store/compose-reducer';
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 const ComposeMail = () => {
     const emailRef = useRef('');
@@ -17,38 +17,39 @@ const ComposeMail = () => {
         content = event.getCurrentContent().getPlainText();
     }
 
-    const submitHandler = async(event) => {
+    const composeHandler = async(event) => {
         event.preventDefault();
 
         const enteredEmail = emailRef.current.value;
         const enteredSubject = subjectRef.current.value;
-        const userMail = localStorage.getItem('email');
-        const userMailId = userMail.split('.').join('');
+        const userMailId = localStorage.getItem('email');
+        const userMail = userMailId.split('.').join('');
 
         const mailDataObj = {
-            from: userMailId,
+            from: userMail,
             to: enteredEmail,
             subject: enteredSubject,
             body: content,
+            read: false
         }
         try {
             const res = await axios.post(
-                `https://client-mail-box-default-rtdb.firebaseio.com/${userMailId}.json`,
+                `https://client-mail-box-default-rtdb.firebaseio.com/${userMail}.json`,
                 mailDataObj
             );
             console.log(res);
-            dispatch(composeActions.composeMail(userMailId));
-            console.log('sent');
+            dispatch(composeActions.composeMail(userMail));
             alert('Sent successfully');
         } catch (error) {
             console.log(error);
+            alert(error)
         }
     }
 
     return (
         <section className={classes.compose}>
             <h1>Compose Mail</h1>
-            <form onSubmit={submitHandler}>
+            <form onSubmit={composeHandler}>
                 <input 
                     name='email'
                     type='email'

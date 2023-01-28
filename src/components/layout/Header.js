@@ -59,11 +59,19 @@ const Header = () => {
             </li>
             )}
             {isLogin && (
+              <li>
+                  <NavLink to="/mail-details"  
+                  activeClassName={classes.active} >
+                  Inbox
+                  </NavLink>
+              </li>
+            )}   
+            {isLogin && (
               <LogOut 
                   onClick={logOutHandler}>
-                  Log Out
+                  LogOut
               </LogOut>
-            )}         
+            )}      
         </ul>
       </nav>
     </header>

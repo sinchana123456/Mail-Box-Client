@@ -14,7 +14,7 @@ const ComposeMail = () => {
     let content;
 
     const onEditorStateChange = (event) => {
-        content = event.getCurrentContent().getPlainText()
+        content = event.getCurrentContent().getPlainText();
     }
 
     const submitHandler = async(event) => {
@@ -22,7 +22,7 @@ const ComposeMail = () => {
 
         const enteredEmail = emailRef.current.value;
         const enteredSubject = subjectRef.current.value;
-        const  userMail = localStorage.getItem('email');
+        const userMail = localStorage.getItem('email');
         const userMailId = userMail.split('.').join('');
 
         const mailDataObj = {
@@ -47,6 +47,7 @@ const ComposeMail = () => {
 
     return (
         <section className={classes.compose}>
+            <h1>Compose Mail</h1>
             <form onSubmit={submitHandler}>
                 <input 
                     name='email'

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { authActions } from '../../store/auth-reducer';
 import Button from '../UI/Button';
 import classes from './Authentication.module.css';
@@ -11,6 +12,7 @@ const Authentication = (props) => {
     const [isLogin, setIsLogin] = useState(false);
     const [isForgot, setIsForgot] = useState(false);
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const signUpHandler = (email, confirmPassword) => {
         fetch(
@@ -80,6 +82,7 @@ const Authentication = (props) => {
                 dispatch(authActions.login(loginObj))
                 console.log('successfully logged into the account');
                 console.log(data);
+                history.replace('/home');
             })
             .catch((error) => {
                 console.log(error.message);

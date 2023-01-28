@@ -18,10 +18,13 @@ const Header = () => {
   //   console.log('unread',unreadCount);
     useEffect(() => {
       if (inboxMails) {
+        let count = 0;
         // eslint-disable-next-line
         Object.keys(inboxMails).map((mail) => {
               if (inboxMails[mail].read === false) {
-            setUnreadCount(unreadCount + 1);
+                count = count + 1;
+                console.log(count);
+              setUnreadCount(count);
           }
         });
       }

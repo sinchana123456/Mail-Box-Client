@@ -14,23 +14,38 @@ const Inbox = () => {
     const userMailId = localStorage.getItem('email');
     const userMail = userMailId.split('.').join('');
 
-    useEffect(() => {
-        const fetchMails = async () => {
-            try {
-                const res = await axios.get(
-                `https://client-mail-box-default-rtdb.firebaseio.com/${userMail}.json`
-                );
-                console.log(res);
-                dispatch(composeActions.fetchMail(res.data))
-            } catch (error) {
-                console.log(error);
-            }
+    const fetchMails = async () => {
+        try {
+            const res = await axios.get(
+            `https://client-mail-box-default-rtdb.firebaseio.com/${userMail}.json`
+            );
+            console.log(res);
+            dispatch(composeActions.fetchMail(res.data))
+        } catch (error) {
+            console.log(error);
         }
-        fetchMails()
-    }, [dispatch, userMail]);
+    }
+
+    useEffect(() => {
+        fetchMails();
+        // eslint-disable-next-line
+    }, []);
 
     const singleMailHandler = (mail) => {
         setSingleMail(mail);
+    }
+
+    const deleteHandler = async(mail) => {
+        console.log(mail);
+        try {
+            const res = await axios.delete(
+            `https://client-mail-box-default-rtdb.firebaseio.com/${userMail}/${mail}.json`
+            );
+            console.log(res);
+            fetchMails();
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     return (
@@ -45,15 +60,22 @@ const Inbox = () => {
                                 read = true;
                             }
                             return (
-                                <div key={mail.toString()} onClick={() =>singleMailHandler(mail)}>
-                                    <Link to='/single-mail-details'>
+                                <div key={mail.toString()}>
+                                    <Link 
+                                        onClick={() =>singleMailHandler(mail)}
+                                        to='/single-mail-details'>
                                         <li
-                                            style={{ listStyleType: read ? 'none' : 'disc',color: read ? 'black' : 'blue',}}>
+                                            style={{ 
+                                                listStyleType: read ? 'none' : 'disc',color: read ? 'black' : 'blue'
+                                                }}>
                                             <span>From: {mails[mail].from}</span><br />
-                                            <span>{mails[mail].subject}</span><br />
-                                            <hr />
                                         </li> 
                                     </Link>  
+                                    <button
+                                        onClick={() => deleteHandler(mail)}>
+                                        Delete
+                                    </button>
+                                    <hr />
                                 </div>
                             )
                         })

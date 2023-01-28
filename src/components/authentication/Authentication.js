@@ -12,14 +12,14 @@ const Authentication = (props) => {
     const [isForgot, setIsForgot] = useState(false);
     const dispatch = useDispatch();
 
-    const signUpHandler = (email, password) => {
+    const signUpHandler = (email, confirmPassword) => {
         fetch(
             'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBPHpH0tZsk8mjeJOBGbWRO_p8wxiWN9VY',
                 {
                     method: 'POST',
                     body: JSON.stringify({
                         email: email,
-                        password: password,
+                        password: confirmPassword,
                         returnSecureToken: true
                     }),
                     headers: {

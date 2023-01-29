@@ -32,17 +32,17 @@ const ComposeMail = () => {
             body: content,
             read: false
         }
+
         try {
             const res = await axios.post(
                 `https://client-mail-box-default-rtdb.firebaseio.com/${userMail}.json`,
                 mailDataObj
             );
+            alert('Sent successfully');
             console.log(res);
             dispatch(composeActions.composeMail(userMail));
-            alert('Sent successfully');
         } catch (error) {
             console.log(error);
-            alert(error)
         }
     }
 

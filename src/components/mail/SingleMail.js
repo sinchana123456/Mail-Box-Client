@@ -7,9 +7,12 @@ import classes from './SingleMail.module.css';
 const SingleMail = (props) => {
     const dispatch = useDispatch();
     const mails = useSelector(state => state.compose.fetchMail);
+    
     const userMailId = localStorage.getItem('email');
     const singleMailKey = props.mailDetails.singleMail;
     dispatch(composeActions.ReadMail(singleMailKey));
+    
+    console.log(`inside simgle email`,singleMailKey)
 
     useEffect(() => {
         const userMail = userMailId.split('.').join('');

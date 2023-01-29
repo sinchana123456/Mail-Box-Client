@@ -80,7 +80,7 @@ const Header = () => {
             )}
             {isLogin && (
               <li>
-                  <NavLink to="/mail-details"  
+                  <NavLink to="/inbox"  
                   activeClassName={classes.active} >
                   Inbox
                   {unreadCount === 0 ? (

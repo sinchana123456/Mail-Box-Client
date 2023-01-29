@@ -1,10 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import SingleMail from './SingleMail';
 import classes from './Inbox.module.css';
 
 const Sent = () => {
     const userMailId = localStorage.getItem('email');
-    const [sentMails, setSentMails] = useState([]);
+    const [singleMail, setSingleMail] = useState(false);
+    const [mails, setSentMails] = useState([]);
 
     const fetchSentMails = async () => {
         const userMail = userMailId.split('.').join('');
@@ -26,23 +28,35 @@ const Sent = () => {
         fetchSentMails();
         // eslint-disable-next-line
     }, []);
+
+    const singleMailHandler = (mail) => {
+        setSingleMail(mail);
+    }
+
     return (
         <section className={classes.inbox}>
             <h1>Sent Mails</h1>
             <div>
                 <ul>
-                {Object.keys(sentMails).map((mail) => {
-                    return (
-                        <div key={mail.toString()}>
-                            <li>
-                                <span>From: {sentMails[mail].from}</span><br />
-                                <span>Subject: {sentMails[mail].subject}</span><br />
-                                <span>Body: {sentMails[mail].body}</span><br />
-                            </li> <hr />
-                        </div>
-                    );
-                })}
-                {sentMails === null && <p>No mails found</p>}
+                    {!singleMail && mails!== null &&
+                        Object.keys(mails).map((mail) => {
+                            return (
+                                <div key={mail.toString()}>
+                                    <div
+                                        onClick={() =>singleMailHandler(mail)}>
+                                        <li>
+                                            <span>To: {mails[mail].to}</span>
+                                        </li> 
+                                    </div>  
+                                    <hr />
+                                </div>
+                            )
+                        })
+                    }
+                    {singleMail && (
+                        <SingleMail mailDetails={{singleMail, mails}} />
+                        )}
+                    {mails === null && <p>No mails found</p>}
                 </ul>
             </div>
         </section>

@@ -80,8 +80,10 @@ const Inbox = () => {
                             )
                         })
                     }
-                    {singleMail && <SingleMail mailDetails={{singleMail, mails}} />}
-                    {mails === null && <p>No emails found</p>}
+                    {singleMail && (
+                        <SingleMail mailDetails={{singleMail, mails}} />
+                        )}
+                    {mails === null && <p>No mails found</p>}
                 </ul>
             </div>
         </section>

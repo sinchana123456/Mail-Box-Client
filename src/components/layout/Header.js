@@ -92,6 +92,13 @@ const Header = () => {
               </li>
             )}   
             {isLogin && (
+              <li>
+                  <NavLink to="/sent"  
+                    activeClassName={classes.active} >
+                    Sent Mails
+                  </NavLink>
+              </li>)}
+            {isLogin && (
               <LogOut 
                   onClick={logOutHandler}>
                   LogOut

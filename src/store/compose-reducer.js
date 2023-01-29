@@ -17,6 +17,9 @@ const ComposeSlice = createSlice({
         },
         ReadMail(state, action){
             state.fetchMail[action.payload].read = true
+        },
+        sentMail(state, action){
+            state.fetchMail = action.payload
         }
     }
 });

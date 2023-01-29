@@ -6,6 +6,7 @@ import AuthPage from './components/pages/AuthPage';
 import HomePage from './components/pages/HomePage';
 import ComposeMailPage from './components/pages/ComposeMailPage';
 import Inbox from './components/mail/Inbox';
+import Sent from './components/mail/Sent';
 
 function App() {
   const isLogin = useSelector(state => state.authentication.isLogin);
@@ -36,6 +37,10 @@ function App() {
             </Route>
             <Route path='/single-mail-details'>
               {isLogin && <Inbox />}
+              {!isLogin && <Redirect to='/auth' />}
+            </Route>
+            <Route path='/sent'>
+              {isLogin && <Sent />}
               {!isLogin && <Redirect to='/auth' />}
             </Route>
           </Switch>

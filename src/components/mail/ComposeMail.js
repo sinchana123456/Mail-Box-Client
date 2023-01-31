@@ -3,14 +3,11 @@ import { Editor } from "react-draft-wysiwyg";
 import { useRef } from 'react';
 import Button from '../UI/Button';
 import classes from './ComposeMail.module.css';
-import { useDispatch } from 'react-redux';
-import { composeActions } from '../../store/compose-reducer';
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 const ComposeMail = () => {
     const emailRef = useRef('');
     const subjectRef = useRef('');
-    const dispatch = useDispatch();
     let content;
 
     const onEditorStateChange = (event) => {
@@ -24,6 +21,7 @@ const ComposeMail = () => {
         const enteredSubject = subjectRef.current.value;
         const userMailId = localStorage.getItem('email');
         const userMail = userMailId.split('.').join('');
+        const toEmailId = enteredEmail.split('.').join('');
 
         const mailDataObj = {
             from: userMail,
@@ -35,12 +33,17 @@ const ComposeMail = () => {
 
         try {
             const res = await axios.post(
-                `https://client-mail-box-default-rtdb.firebaseio.com/${userMail}.json`,
+                `https://client-mail-box-default-rtdb.firebaseio.com/${toEmailId}Inbox.json`,
                 mailDataObj
             );
             alert('Sent successfully');
             console.log(res);
-            dispatch(composeActions.composeMail(userMail));
+            
+            const sentRes = await axios.post(
+                `https://client-mail-box-default-rtdb.firebaseio.com/${userMail}SentMail.json`,
+                mailDataObj
+            );
+            console.log(sentRes);
         } catch (error) {
             console.log(error);
         }

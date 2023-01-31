@@ -14,7 +14,7 @@
 .compose input {
     margin: 0 auto;
     padding: 10px;
-    border: 0.5px solid rgb(215, 215, 215);
+    border: 0.5px solid rgb(243, 241, 241);
     margin-bottom: 0.65rem;
     font-size: 18px;
     border-radius: 5px;
@@ -25,7 +25,7 @@
   .compose input:hover,
   .compose input:active,
   .compose input:focus {
-    background-color: rgb(227, 227, 227);
+    background-color: rgb(235, 183, 183);
   }
   
 .compose button {

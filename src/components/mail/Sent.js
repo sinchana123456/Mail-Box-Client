@@ -14,7 +14,7 @@ const Sent = () => {
 
         try {
             const res = await axios.get(
-            `https://client-mail-box-default-rtdb.firebaseio.com/${userMail}.json`
+            `https://client-mail-box-default-rtdb.firebaseio.com/${userMail}SentMail.json`
             );
             console.log(res.data);
             const data = res.data;
@@ -45,7 +45,8 @@ const Sent = () => {
                                     <div
                                         onClick={() =>singleMailHandler(mail)}>
                                         <li>
-                                            <span>To: {mails[mail].to}</span>
+                                            <span>To: {mails[mail].to}</span><br />
+                                            <span>Subject: {mails[mail].subject}</span>
                                         </li> 
                                     </div>  
                                     <hr />

@@ -41,10 +41,7 @@
     transition: background-color 1s;
     font-size: 15px;
     font-weight: 300;
-    margin-left: 40rem;
-    position: relative;
-    bottom: 35px;
-    right: 45px;
+    margin-left: 35rem;
 }
 
 .inbox button:hover,

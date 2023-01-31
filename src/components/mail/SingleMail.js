@@ -12,8 +12,6 @@ const SingleMail = (props) => {
     const singleMailKey = props.mailDetails.singleMail;
     dispatch(composeActions.ReadMail(singleMailKey));
     
-    console.log(`inside simgle email`,singleMailKey)
-
     useEffect(() => {
         const userMail = userMailId.split('.').join('');
         console.log(userMail);
@@ -21,7 +19,7 @@ const SingleMail = (props) => {
         const readMail = async () => {
             try {
                 const res = await axios.put(
-                `https://client-mail-box-default-rtdb.firebaseio.com/${userMail}/${singleMailKey}.json`,
+                `https://client-mail-box-default-rtdb.firebaseio.com/${userMail}SentMail/${singleMailKey}.json`,
                 mails[singleMailKey]
                 )
                 console.log(res);

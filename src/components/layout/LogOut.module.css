@@ -4,8 +4,8 @@
   
   .logout-button button {
     font: inherit;
-    background-color: transparent;
-    border: 1px solid rgb(0, 119, 255);
+    background-color: white;
+    border: 1px solid rgb(250, 251, 252);
     color: black;
     font-weight: bold;
     margin: 0 0.75rem;
@@ -16,7 +16,7 @@
   }
   
   .logout-button button:hover {
-    background-color: red;
-    border: 1px solid red;
-    color: white;
+    background-color: rgb(250, 248, 248);
+    border: 1px solid rgb(255, 254, 254);
+    color: black;
   }

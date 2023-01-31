@@ -16,7 +16,7 @@ const Inbox = () => {
     const fetchMails = async () => {
         try {
             const res = await axios.get(
-            `https://client-mail-box-default-rtdb.firebaseio.com/${userMail}.json`
+            `https://client-mail-box-default-rtdb.firebaseio.com/${userMail}Inbox.json`
             );
             console.log(res);
             dispatch(composeActions.fetchMail(res.data))
@@ -28,7 +28,7 @@ const Inbox = () => {
     useEffect(() => {
         setInterval(() => {
             fetchMails();
-            console.log('called');
+            // console.log('called');
         }, 2000)
         // eslint-disable-next-line
     }, []);
@@ -41,7 +41,7 @@ const Inbox = () => {
         console.log(mail);
         try {
             const res = await axios.delete(
-            `https://client-mail-box-default-rtdb.firebaseio.com/${userMail}/${mail}.json`
+            `https://client-mail-box-default-rtdb.firebaseio.com/${userMail}Inbox/${mail}.json`
             );
             console.log(res);
             fetchMails();
@@ -67,7 +67,7 @@ const Inbox = () => {
                                         onClick={() =>singleMailHandler(mail)}>
                                         <li
                                             style={{ 
-                                                listStyleType: read ? 'none' : 'disc',color: read ? 'black' : 'blue'
+                                                listStyleType: read ? 'none' : 'disc', color: read ? 'black' : 'blue'
                                                 }}>
                                             <span>From: {mails[mail].from}</span>
                                         </li> 

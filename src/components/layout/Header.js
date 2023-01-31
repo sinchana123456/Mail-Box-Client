@@ -68,8 +68,8 @@ const Header = () => {
             <li>
                 <NavLink to='/compose'
                     style={{
-                        backgroundColor: isHover ? 'green': '',
-                        color: isHover ? 'white' : ''
+                        backgroundColor: isHover ? 'white': '',
+                        color: isHover ? 'black' : ''
                     }} 
                     onMouseEnter={mouseEnter}
                     onMouseLeave={mouseLeave}
